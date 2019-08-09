@@ -5,8 +5,8 @@ import httpMocks from 'node-mocks-http';
 import { print } from 'graphql';
 import { convertNodeHttpToRequest, runHttpQuery } from 'apollo-server-core';
 
-import { type ApolloServer } from 'apollo-server-express';
-import { type DocumentNode } from 'graphql';
+import { ApolloServer } from 'apollo-server-express';
+import { DocumentNode } from 'graphql';
 
 const mockRequest = (options = {}) =>
   httpMocks.createRequest({
@@ -21,13 +21,13 @@ type StringOrAst = string | DocumentNode;
 type TestClientConfig = {
   // The ApolloServer instance that will be used for handling the queries you run in your tests.
   // Must be an instance of the ApolloServer class from `apollo-server-express` (or a compatible subclass).
-  apolloServer: ApolloServer,
+  apolloServer: ApolloServer;
   // Extends the mocked Request object with additional keys.
   // Useful when your apolloServer `context` option is a callback that operates on the passed in `req` key,
   // and you want to inject data into that `req` object.
   // If you don't pass anything here, we provide a default request mock object for you.
   // See https://github.com/howardabrams/node-mocks-http#createrequest for all the default values that are included.
-  extendMockRequest?: {}
+  extendMockRequest?: {};
 };
 
 // This function takes in an apollo server instance and returns a function that you can use to run operations
@@ -64,7 +64,10 @@ const createTestClient = ({
     const req = mockRequest(extendMockRequest);
     const res = mockResponse();
 
-    const graphQLOptions = apolloServer.createGraphQLServerOptions(req, res);
+    const graphQLOptions = await apolloServer.createGraphQLServerOptions(
+      req,
+      res
+    );
 
     const { graphqlResponse } = await runHttpQuery([req, res], {
       method: 'POST',

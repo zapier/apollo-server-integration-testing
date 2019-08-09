@@ -2,16 +2,30 @@
   "name": "apollo-server-integration-testing",
   "version": "1.0.0",
   "description": "Test helper for writing apollo-server integration tests",
-  "main": "src/index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "repository": "https://github.com/zapier/apollo-server-integration-testing.git",
   "author": "Vitor Balocco <vitor.balocco@zapier.com>",
   "license": "MIT",
   "private": false,
+  "scripts": {
+    "compile": "tsc --clean",
+    "prepublish": "yarn compile"
+  },
   "dependencies": {
     "apollo-server-core": "^2.8.1",
     "apollo-server-express": "^2.8.1",
     "express": "^4.17.1",
     "graphql": "^14.4.2",
-    "node-mocks-http": "^1.7.6"
-  }
+    "node-mocks-http": "^1.7.6",
+    "typescript": "^3.5.3"
+  },
+  "keywords": [
+    "GraphQL",
+    "Apollo",
+    "Server",
+    "Javascript",
+    "Testing",
+    "Integration Testing"
+  ]
 }
