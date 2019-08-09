@@ -82,5 +82,8 @@ export const createTestClient = ({
     return JSON.parse(graphqlResponse);
   };
 
-  return test;
+  return {
+    query: test,
+    mutate: test
+  };
 };
