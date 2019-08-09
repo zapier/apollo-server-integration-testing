@@ -9,8 +9,9 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "compile": "tsc --clean",
-    "prepublish": "yarn compile"
+    "clean": "rm -rf dist/",
+    "compile": "tsc",
+    "prepublish": "yarn clean && yarn compile"
   },
   "dependencies": {
     "apollo-server-core": "^2.8.1",
