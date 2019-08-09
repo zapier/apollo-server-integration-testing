@@ -17,7 +17,7 @@ import { createTestClient } from 'apollo-server-integration-testing';
 import { createApolloServer } from './myServerCreationCode';
 
 const apolloServer = await createApolloServer();
-const query = createTestClient({
+const { query } = createTestClient({
   apolloServer
 });
 
@@ -40,7 +40,7 @@ This allows you to test all the logic of your apollo server, including any logic
 You can also extend the mocked Request object with additional keys by passing an `extendMockRequest` field to `createTestClient`:
 
 ```js
-const query = createTestClient({
+const { query } = createTestClient({
   apolloServer,
   extendMockRequest: {
     headers: {
@@ -88,8 +88,8 @@ it('will not work', () => {
 
 If you want to help out, here's a TODO list:
 
-- [ ] Strip flow types before publishing (or switch to Typescript?)
-- [ ] Compile to non-es6 module syntax
+- [x] Strip flow types before publishing (or switch to Typescript?)
+- [x] Compile to non-es6 module syntax
 - [ ] Add tests
 - [ ] Add auto-formatting
 
