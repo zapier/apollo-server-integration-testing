@@ -34,7 +34,7 @@ expect(result).toEqual({
 
 This allows you to test all the logic of your apollo server, including any logic inside of the `context` option that you can pass to the `ApolloServer` constructor.
 
-## Mocking the `Request` object
+### Mocking the `Request` object
 
 `createTestClient` automatically mocks the `Request` object that will be passed to the `context` option of your `ApolloServer` constructor, so testing works out of the box.
 You can also extend the mocked Request object with additional keys by passing an `extendMockRequest` field to `createTestClient`:
