@@ -52,7 +52,7 @@ type TestClientConfig = {
 //   }
 // });
 // ```
-const createTestClient = ({
+export const createTestClient = ({
   apolloServer,
   extendMockRequest = {}
 }: TestClientConfig) => {
@@ -84,5 +84,3 @@ const createTestClient = ({
 
   return test;
 };
-
-export default createTestClient;
