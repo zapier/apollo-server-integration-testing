@@ -17,6 +17,7 @@ const mockRequest = (options = {}) =>
 const mockResponse = () => httpMocks.createResponse();
 
 type StringOrAst = string | DocumentNode;
+type Options = { variables?: object};
 
 type TestClientConfig = {
   // The ApolloServer instance that will be used for handling the queries you run in your tests.
@@ -59,7 +60,7 @@ export const createTestClient = ({
   const app = express();
   apolloServer.applyMiddleware({ app });
 
-  const test = async (operation: StringOrAst, {variables} = {}) => {
+  const test = async (operation: StringOrAst, {variables}: Options = {}) => {
     const req = mockRequest(extendMockRequest);
     const res = mockResponse();
 
