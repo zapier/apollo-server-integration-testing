@@ -59,8 +59,7 @@ export const createTestClient = ({
   const app = express();
   apolloServer.applyMiddleware({ app });
 
-  // TODO(vitorbal): add second parameter to take variables and additional request options if we need it in the future
-  const test = async (operation: StringOrAst) => {
+  const test = async (operation: StringOrAst, {variables} = {}) => {
     const req = mockRequest(extendMockRequest);
     const res = mockResponse();
 
@@ -74,7 +73,8 @@ export const createTestClient = ({
       options: graphQLOptions,
       query: {
         // operation can be a string or an AST, but `runHttpQuery` only accepts a string
-        query: typeof operation === 'string' ? operation : print(operation)
+        query: typeof operation === 'string' ? operation : print(operation),
+        variables
       },
       request: convertNodeHttpToRequest(req)
     });
