@@ -46,7 +46,7 @@ const mutationResult = await mutate(
   { variables: { id: 1, email: 'nancy@foo.co' } }
 );
 
-epect(mutationResult).toEqual({
+expect(mutationResult).toEqual({
   data: {
     updateUser: {
       email: 'nancy@foo.co'
