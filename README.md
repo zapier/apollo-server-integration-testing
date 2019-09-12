@@ -17,7 +17,7 @@ import { createTestClient } from 'apollo-server-integration-testing';
 import { createApolloServer } from './myServerCreationCode';
 
 const apolloServer = await createApolloServer();
-const { query } = createTestClient({
+const { query, mutate } = createTestClient({
   apolloServer
 });
 
@@ -28,6 +28,29 @@ expect(result).toEqual({
     currentUser: {
       id: '1'
     }
+  }
+});
+
+const UPDATE_USER = `
+  mutation UpdateUser($id: ID!, $email: String!) {
+    updateUser(id: $id, email: $email) {
+      user {
+        email
+      }
+    }
+  }
+`;
+
+const mutationResult = await mutate(
+  UPDATE_USER,
+  { variables: { id: 1, email: 'nancy@foo.co' } }
+);
+
+expect(mutationResult).toEqual({
+  data: {
+    updateUser: {
+      email: 'nancy@foo.co'
+    } 
   }
 });
 ```
