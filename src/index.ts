@@ -14,7 +14,7 @@ const mockRequest = (options = {}) =>
     ...options
   });
 
-const mockResponse = () => httpMocks.createResponse();
+const mockResponse = (options = {}) => httpMocks.createResponse(options);
 
 type StringOrAst = string | DocumentNode;
 type Options = { variables?: object};
@@ -29,6 +29,12 @@ type TestClientConfig = {
   // If you don't pass anything here, we provide a default request mock object for you.
   // See https://github.com/howardabrams/node-mocks-http#createrequest for all the default values that are included.
   extendMockRequest?: {};
+  // Extends the mocked Response object with additional keys.
+  // Useful when your apolloServer `context` option is a callback that operates on the passed in `res` key,
+  // and you want to inject data into that `res` object (such as `res.locals`).
+  // If you don't pass anything here, we provide a default response mock object for you.
+  // See https://www.npmjs.com/package/node-mocks-http#createresponse for all the default values that are included.
+  extendMockResponse?: {};
 };
 
 // This function takes in an apollo server instance and returns a function that you can use to run operations
@@ -55,14 +61,15 @@ type TestClientConfig = {
 // ```
 export const createTestClient = ({
   apolloServer,
-  extendMockRequest = {}
+  extendMockRequest = {},
+  extendMockResponse = {}
 }: TestClientConfig) => {
   const app = express();
   apolloServer.applyMiddleware({ app });
 
   const test = async (operation: StringOrAst, {variables}: Options = {}) => {
     const req = mockRequest(extendMockRequest);
-    const res = mockResponse();
+    const res = mockResponse(extendMockResponse);
 
     const graphQLOptions = await apolloServer.createGraphQLServerOptions(
       req,
