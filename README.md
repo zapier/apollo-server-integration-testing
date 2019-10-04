@@ -50,17 +50,17 @@ expect(mutationResult).toEqual({
   data: {
     updateUser: {
       email: 'nancy@foo.co'
-    } 
+    }
   }
 });
 ```
 
 This allows you to test all the logic of your apollo server, including any logic inside of the `context` option that you can pass to the `ApolloServer` constructor.
 
-### Mocking the `Request` object
+### Mocking the `Request` or `Response` object
 
-`createTestClient` automatically mocks the `Request` object that will be passed to the `context` option of your `ApolloServer` constructor, so testing works out of the box.
-You can also extend the mocked Request object with additional keys by passing an `extendMockRequest` field to `createTestClient`:
+`createTestClient` automatically mocks the `Request` and `Response` objects that will be passed to the `context` option of your `ApolloServer` constructor, so testing works out of the box.
+You can also extend the mocked Request or Response object with additional keys by passing an `extendMockRequest` or `extendMockResponse` field to `createTestClient`:
 
 ```js
 const { query } = createTestClient({
@@ -69,6 +69,13 @@ const { query } = createTestClient({
     headers: {
       cookie: 'csrf=blablabla',
       referer: ''
+    }
+  },
+  extendMockResponse: {
+    locals: {
+      user: {
+        isAuthenticated: false
+      }
     }
   }
 });
