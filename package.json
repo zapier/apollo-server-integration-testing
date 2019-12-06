@@ -23,11 +23,13 @@
     "dev": "tsc --watch"
   },
   "dependencies": {
-    "apollo-server-core": "^2.8.1",
-    "apollo-server-express": "^2.8.1",
+    "apollo-server-core": "^2.9.13",
+    "apollo-server-express": "^2.9.13",
     "express": "^4.17.1",
-    "node-mocks-http": "^1.7.6",
-    "typescript": "^3.5.3"
+    "node-mocks-http": "^1.8.0"
+  },
+  "devDependencies": {
+    "typescript": "^3.7.3"
   },
   "peerDependencies": {
     "graphql": "^0.12.0 || ^0.13.0 || ^14.0.0"
