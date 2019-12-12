@@ -41,10 +41,9 @@ const UPDATE_USER = `
   }
 `;
 
-const mutationResult = await mutate(
-  UPDATE_USER,
-  { variables: { id: 1, email: 'nancy@foo.co' } }
-);
+const mutationResult = await mutate(UPDATE_USER, {
+  variables: { id: 1, email: 'nancy@foo.co' }
+});
 
 expect(mutationResult).toEqual({
   data: {
@@ -84,6 +83,34 @@ const { query } = createTestClient({
 This is useful when your apollo server `context` option is a callback that operates on the passed in `req` key, and you want to inject data into that `req` object.
 
 As mentioned above, if you don't pass an `extendMockRequest` to `createTestClient`, we provide a default request mock object for you. See https://github.com/howardabrams/node-mocks-http#createrequest for all the default values that are included in that mock.
+
+### setOptions
+
+You can also set the `request` and `response` mocking options **after** the creation of the `test client`, which is a **cleaner** and **faster** way due not needing to create a new instance for **any** change you might want to do the `request` or `response`.
+
+```js
+const { query, setOptions } = createTestClient({
+  apolloServer
+});
+
+setOptions({
+  // If "request" or "response" is not specified, it's not modified
+  request: {
+    headers: {
+      cookie: 'csrf=blablabla',
+      referer: ''
+    }
+  },
+  response: {
+    locals: {
+      user: {
+        isAuthenticated: false
+      }
+    }
+  }
+});
+```
+
 
 ## Why not use `apollo-server-testing`?
 
