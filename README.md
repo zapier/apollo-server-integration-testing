@@ -152,4 +152,4 @@ If you want to help out, here's a TODO list:
 
 ## Support
 
-This package should work for consumers using `apollo-server` or `apollo-server-express`. We don't plan on supporting any other node server integrations at this time.
+This package should work for consumers using `apollo-server-express`. We don't plan on supporting any other node server integrations at this time.
