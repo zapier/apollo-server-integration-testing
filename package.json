@@ -20,7 +20,8 @@
     "clean": "rm -rf dist/",
     "compile": "tsc",
     "prepublish": "yarn clean && yarn compile",
-    "dev": "tsc --watch"
+    "dev": "tsc --watch",
+    "prettier": "prettier --check src"
   },
   "dependencies": {
     "apollo-server-core": "^2.9.13",
@@ -29,6 +30,7 @@
     "node-mocks-http": "^1.8.0"
   },
   "devDependencies": {
+    "prettier": "^2.1.2",
     "typescript": "^3.7.3"
   },
   "peerDependencies": {
