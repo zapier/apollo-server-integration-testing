@@ -29,8 +29,8 @@
     "node-mocks-http": "^1.8.0"
   },
   "devDependencies": {
-    "husky": ">=4",
-    "lint-staged": ">=10",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
     "prettier": "^2.0.5",
     "typescript": "^3.7.3"
   },
