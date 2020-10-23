@@ -20,7 +20,8 @@
     "clean": "rm -rf dist/",
     "compile": "tsc",
     "prepublish": "yarn clean && yarn compile",
-    "dev": "tsc --watch"
+    "dev": "tsc --watch",
+    "prettier": "prettier --check src"
   },
   "dependencies": {
     "apollo-server-core": "^2.9.13",
@@ -31,7 +32,7 @@
   "devDependencies": {
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
-    "prettier": "^2.0.5",
+    "prettier": "^2.1.2",
     "typescript": "^3.7.3"
   },
   "peerDependencies": {

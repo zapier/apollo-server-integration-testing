@@ -9,7 +9,7 @@ import httpMocks, { RequestOptions, ResponseOptions } from 'node-mocks-http';
 const mockRequest = (options: RequestOptions = {}) =>
   httpMocks.createRequest({
     method: 'POST',
-    ...options
+    ...options,
   });
 
 const mockResponse = (options: ResponseOptions = {}) =>
@@ -71,7 +71,7 @@ export type TestSetOptions = (options: {
 export function createTestClient({
   apolloServer,
   extendMockRequest = {},
-  extendMockResponse = {}
+  extendMockResponse = {},
 }: TestClientConfig) {
   const app = express();
   apolloServer.applyMiddleware({ app });
@@ -86,7 +86,7 @@ export function createTestClient({
 
   const setOptions: TestSetOptions = ({
     request,
-    response
+    response,
   }: {
     request?: RequestOptions;
     response?: ResponseOptions;
@@ -117,9 +117,9 @@ export function createTestClient({
       query: {
         // operation can be a string or an AST, but `runHttpQuery` only accepts a string
         query: typeof operation === 'string' ? operation : print(operation),
-        variables
+        variables,
       },
-      request: convertNodeHttpToRequest(req)
+      request: convertNodeHttpToRequest(req),
     });
 
     return JSON.parse(graphqlResponse) as T;
@@ -128,6 +128,6 @@ export function createTestClient({
   return {
     query: test,
     mutate: test,
-    setOptions
+    setOptions,
   };
 }

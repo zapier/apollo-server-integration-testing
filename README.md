@@ -111,7 +111,6 @@ setOptions({
 });
 ```
 
-
 ## Why not use `apollo-server-testing`?
 
 You can't really write _real_ integration tests with `apollo-server-testing`, because it doesn't support servers which rely on the `context` option being a function that uses the `req` object ([see this issue for more information](https://github.com/apollographql/apollo-server/issues/2277)).
@@ -148,7 +147,7 @@ If you want to help out, here's a TODO list:
 - [x] Strip flow types before publishing (or switch to Typescript?)
 - [x] Compile to non-es6 module syntax
 - [ ] Add tests
-- [ ] Add auto-formatting
+- [x] Add auto-formatting
 
 ## Support
 
