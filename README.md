@@ -18,7 +18,7 @@ import { createApolloServer } from './myServerCreationCode';
 
 const apolloServer = await createApolloServer();
 const { query, mutate } = createTestClient({
-  apolloServer
+  apolloServer,
 });
 
 const result = await query(`{ currentUser { id } }`);
@@ -26,9 +26,9 @@ const result = await query(`{ currentUser { id } }`);
 expect(result).toEqual({
   data: {
     currentUser: {
-      id: '1'
-    }
-  }
+      id: '1',
+    },
+  },
 });
 
 const UPDATE_USER = `
@@ -42,15 +42,15 @@ const UPDATE_USER = `
 `;
 
 const mutationResult = await mutate(UPDATE_USER, {
-  variables: { id: 1, email: 'nancy@foo.co' }
+  variables: { id: 1, email: 'nancy@foo.co' },
 });
 
 expect(mutationResult).toEqual({
   data: {
     updateUser: {
-      email: 'nancy@foo.co'
-    }
-  }
+      email: 'nancy@foo.co',
+    },
+  },
 });
 ```
 
@@ -67,16 +67,16 @@ const { query } = createTestClient({
   extendMockRequest: {
     headers: {
       cookie: 'csrf=blablabla',
-      referer: ''
-    }
+      referer: '',
+    },
   },
   extendMockResponse: {
     locals: {
       user: {
-        isAuthenticated: false
-      }
-    }
-  }
+        isAuthenticated: false,
+      },
+    },
+  },
 });
 ```
 
@@ -90,7 +90,7 @@ You can also set the `request` and `response` mocking options **after** the crea
 
 ```js
 const { query, setOptions } = createTestClient({
-  apolloServer
+  apolloServer,
 });
 
 setOptions({
@@ -98,16 +98,16 @@ setOptions({
   request: {
     headers: {
       cookie: 'csrf=blablabla',
-      referer: ''
-    }
+      referer: '',
+    },
   },
   response: {
     locals: {
       user: {
-        isAuthenticated: false
-      }
-    }
-  }
+        isAuthenticated: false,
+      },
+    },
+  },
 });
 ```
 
@@ -146,7 +146,7 @@ If you want to help out, here's a TODO list:
 
 - [x] Strip flow types before publishing (or switch to Typescript?)
 - [x] Compile to non-es6 module syntax
-- [ ] Add tests
+- [x] Add tests
 - [x] Add auto-formatting
 
 ## Support

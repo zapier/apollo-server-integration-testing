@@ -18,3 +18,5 @@ jobs:
         run: yarn prettier
       - name: Typecheck Files
         run: yarn tsc --noEmit
+      - name: Run tests
+        run: yarn test
