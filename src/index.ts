@@ -3,7 +3,7 @@
 import { convertNodeHttpToRequest, runHttpQuery } from 'apollo-server-core';
 import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
-import { DocumentNode, print } from 'graphql';
+import { DocumentNode, ExecutionResult, print } from 'graphql';
 import httpMocks, { RequestOptions, ResponseOptions } from 'node-mocks-http';
 
 const mockRequest = (options: RequestOptions = {}) =>
@@ -39,7 +39,7 @@ export type TestClientConfig = {
 export type TestQuery = <T extends object = {}, V extends object = {}>(
   operation: StringOrAst,
   { variables }?: Options<V>
-) => Promise<T>;
+) => Promise<ExecutionResult<T>>;
 
 export type TestSetOptions = (options: {
   request?: RequestOptions;

@@ -1,6 +1,6 @@
 import { ApolloServer, gql, UserInputError } from 'apollo-server-express';
 
-interface Book {
+export interface Book {
   title: string;
   author: string;
 }

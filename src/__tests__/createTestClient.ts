@@ -1,5 +1,4 @@
-import { ApolloError } from 'apollo-server-express';
-import { database, apolloServer } from '../__mocks__/apolloServer';
+import { database, apolloServer, Book } from '../__mocks__/apolloServer';
 import { createTestClient } from '../';
 
 describe('createTestClient', () => {
@@ -55,14 +54,11 @@ describe('createTestClient', () => {
     const { query } = createTestClient({
       apolloServer,
     });
-    const response = await query<{ data: undefined; errors: ApolloError[] }>(
-      GET_BOOKS,
-      {
-        variables: {
-          first: -1,
-        },
-      }
-    );
+    const response = await query(GET_BOOKS, {
+      variables: {
+        first: -1,
+      },
+    });
 
     expect(response).toEqual({
       data: null,
@@ -87,5 +83,14 @@ describe('createTestClient', () => {
     });
 
     expect(response).toEqual({ data: { createBook: book } });
+  });
+
+  it('should typecheck', async () => {
+    const { query } = createTestClient({
+      apolloServer,
+    });
+    const { data } = await query<{ books: Book[] }>(GET_BOOKS);
+
+    expect(data!.books).toEqual(database.books);
   });
 });
