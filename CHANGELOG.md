@@ -2,6 +2,10 @@
 
 ## vNext
 
+## 2.3.1
+
+- Updated peer dependencies to include `graphql@^15.0.0`. [PR #14](https://github.com/zapier/apollo-server-integration-testing/pull/14).
+
 ## 2.3.0
 
 - Added new `setOptions` API to allow changing request/response mocking without having to create a new test client instance. [PR #3](https://github.com/zapier/apollo-server-integration-testing/pull/3).
