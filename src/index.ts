@@ -38,7 +38,7 @@ export type TestClientConfig = {
 
 export type TestQuery = <T extends object = {}, V extends object = {}>(
   operation: StringOrAst,
-  { variables }?: Options<V>
+  options?: Options<V>
 ) => Promise<ExecutionResult<T>>;
 
 export type TestSetOptions = (options: {
