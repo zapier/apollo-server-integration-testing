@@ -2,6 +2,8 @@
 
 ## vNext
 
+- Updated the return type of `TestQuery` to use GraphQL's `ExecutionResult`. [PR #12](https://github.com/zapier/apollo-server-integration-testing/pull/12)
+
 ## 2.3.1
 
 - Updated peer dependencies to include `graphql@^15.0.0`. [PR #14](https://github.com/zapier/apollo-server-integration-testing/pull/14).
