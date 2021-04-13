@@ -140,15 +140,6 @@ it('will not work', () => {
 
 [The official integration example code from Apollo](https://github.com/apollographql/fullstack-tutorial/blob/6988f6948668ccc2dea3f7a216dd44bdf25a0b9f/final/server/src/__tests__/integration.js#L68-L74) solves this by instantiating an ApolloServer inside the test and mocking the `context` value by hand. But I don't consider this a real integration test, since you're not using the same instantiation code that your production code uses.
 
-## Development
-
-If you want to help out, here's a TODO list:
-
-- [x] Strip flow types before publishing (or switch to Typescript?)
-- [x] Compile to non-es6 module syntax
-- [x] Add tests
-- [x] Add auto-formatting
-
 ## Support
 
 This package should work for consumers using `apollo-server-express`. We don't plan on supporting any other node server integrations at this time.
