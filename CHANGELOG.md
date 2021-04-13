@@ -2,7 +2,30 @@
 
 ## vNext
 
-- Updated the return type of `TestQuery` to use GraphQL's `ExecutionResult`. [PR #12](https://github.com/zapier/apollo-server-integration-testing/pull/12)
+## 3.0.0
+
+**Breaking Change (for Typescript users)**:
+
+[PR #12](https://github.com/zapier/apollo-server-integration-testing/pull/12)
+
+The `TestQuery` type (the type of the `query` and `mutate` functions) has been changed to use GraphQL's `ExecutionResult` generic type under the hood.
+
+```ts
+type TestQuery = <T extends object = {}, V extends object = {}>(
+  operation: StringOrAst,
+  options?: Options<V>
+) => Promise<ExecutionResult<T>>; // previously, this returned `Promise<T>`
+```
+
+If you are using typescript in your tests, you will need to update them to reflect this change. Here's an example:
+
+```ts
+// BEFORE THIS CHANGE
+const { data } = await query<{ data: User[] }>(GET_USERS_QUERY);
+
+// AFTER THIS CHANGE
+const { data } = await query<User[]>(GET_USERS_QUERY);
+```
 
 ## 2.3.1
 
