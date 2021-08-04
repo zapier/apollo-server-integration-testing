@@ -15,6 +15,10 @@ describe('createTestClient', () => {
     }
   }`;
 
+  beforeAll(async () => {
+    await apolloServer.start();
+  });
+
   beforeEach(() => {
     database.books = [
       {
