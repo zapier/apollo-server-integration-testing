@@ -17,6 +17,7 @@ import { createTestClient } from 'apollo-server-integration-testing';
 import { createApolloServer } from './myServerCreationCode';
 
 const apolloServer = await createApolloServer();
+await apolloServer.start();
 const { query, mutate } = createTestClient({
   apolloServer,
 });
